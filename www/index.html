@@ -15,12 +15,11 @@
     //
     function uploadFile(imageURI){
 	  //var input = document.getElementById("file");
-	  var file = imageURI.substr(imageURI.lastIndexOf('/')+1)+'.png';
-	  if(file != undefined){
+	  //var file = imageURI.substr(imageURI.lastIndexOf('/')+1)+'.png';
+
 		formData= new FormData();
-		// omissió
-		  formData.append("image", file);
-		  $.ajax({
+		formData.append("image", imageURI);
+		$.ajax({
 			url: "http://issolutions.esy.es/php/upload.php",
 			type: "POST",
 			data: formData,
@@ -29,9 +28,9 @@
 			success: function(data){
 				alert('Imatge Pujada');
 			}
-		  });
+		});
 	
-		  var params = {nom:'Jordi',cognom:'Barbut',codiusuari:'12221', imatge:file.name};
+		  var params = {nom:'Jordi',cognom:'Barbut',codiusuari:'12221', imatge:imageURI.name};
 		  $.ajax({
 			url: "http://issolutions.esy.es/php/insert.php",
 			type: "POST",
@@ -42,9 +41,7 @@
 				alert('Guardat BBDD');
 			}
 		  });
-		}else{
-		  alert('Not a valid image!');
-		}
+
 
 
 	}
