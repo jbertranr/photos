@@ -47,7 +47,7 @@
 	
 
     function uploadPhoto(imageURI) {
-        var options = new FileUploadOptions();
+        /*var options = new FileUploadOptions();
         options.fileKey="file";
         options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1)+'.png';
         options.mimeType="text/plain";
@@ -59,7 +59,7 @@
         var ft = new FileTransfer();
         
 		ft.upload(imageURI, encodeURI("http://issolutions.esy.es/php/upload.php"), win, fail, options);
-		
+		*/
 		uploadFile(imageURI);
     }
     
