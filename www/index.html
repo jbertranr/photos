@@ -15,8 +15,7 @@
     //
     function uploadFile(imageURI){
 	  //var input = document.getElementById("file");
-	  file=imageURI.substr(imageURI.lastIndexOf('/')+1)+'.png';
-	  //file = 'imatge.jpg';
+	  var file = imageURI.substr(imageURI.lastIndexOf('/')+1)+'.png';
 	  if(file != undefined){
 		formData= new FormData();
 		// omissió
@@ -46,11 +45,10 @@
 		}else{
 		  alert('Not a valid image!');
 		}
-	  }else{
-		alert('Input something!');
-	  }
-	
+
+
 	}
+	
 
     function uploadPhoto(imageURI) {
         var options = new FileUploadOptions();
