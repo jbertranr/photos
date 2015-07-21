@@ -13,11 +13,11 @@
     // PhoneGap is ready to be used!
     //
     function uploadFile(){
-	  var input = document.getElementById("file");
+	  /*var input = document.getElementById("file");
 	  file = input.files[0];
 	  if(file != undefined){
 		formData= new FormData();
-		if(!!file.type.match(/image.*/)){
+		// omissió
 		  formData.append("image", file);
 		  $.ajax({
 			url: "php/upload.php",
@@ -47,7 +47,35 @@
 	  }else{
 		alert('Input something!');
 	  }
+	*/
 	}
+
+    function uploadPhoto(imageURI) {
+        var options = new FileUploadOptions();
+        options.fileKey="file";
+        options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1)+'.png';
+        options.mimeType="text/plain";
+
+        var params = new Object();
+
+        options.params = params;
+
+        var ft = new FileTransfer();
+        ft.upload(imageURI, encodeURI("php/upload.php"), win, fail, options);
+    }
+    
+    function win(r) {
+        console.log("Code = " + r.responseCode);
+        console.log("Response = " + r.response);
+        console.log("Sent = " + r.bytesSent);
+    }
+
+    function fail(error) {
+        alert("An error has occurred: Code = " + error.code);
+        console.log("upload error source " + error.source);
+        console.log("upload error target " + error.target);
+    }
+
 
     function onDeviceReady() {
         pictureSource=navigator.camera.PictureSourceType;
@@ -84,12 +112,19 @@
       // The inline CSS rules are used to resize the image
       //
       smallImage.src = imageData;
+      
+      
+      
+      
+      
+      
+      
     }
     // Called when a photo is successfully retrieved
     //
     function onPhotoURISuccess(imageURI) {
       // Uncomment to view the image file URI 
-      // console.log(imageURI);
+      console.log(imageURI);
       // Get image handle
       //
       var largeImage = document.getElementById('largeImage');
