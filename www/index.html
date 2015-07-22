@@ -7,7 +7,7 @@
 	<!--script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script--> 
 	<script type="text/javascript" charset="utf-8">
  
-	function uploadFromGallery() {
+	function uploadFromGallery_2() {
 
 		// Retrieve image file location from specified source
 		navigator.camera.getPicture(uploadPhoto,
@@ -19,6 +19,36 @@
 
 	}
 
+	function uploadFromGallery() {
+
+		// Retrieve image file location from specified source
+		navigator.camera.getPicture(uploadPhoto,
+									function(message) { alert('get picture failed'); },
+									{ quality: 50, 
+									destinationType: navigator.camera.DestinationType.FILE_URI,
+									sourceType: navigator.camera.PictureSourceType.CAMERA }
+									);
+
+	}
+	
+	
+	
+	
+	
+	/*
+
+    function capturePhoto(){
+        navigator.camera.getPicture(picOnSuccess, picOnFailure, { 
+            quality: 20,
+            destinationType: Camera.DestinationType.DATA_URL,
+            sourceType: Camera.PictureSourceType.CAMERA,
+            correctOrientation: true
+        });
+    }
+
+
+
+*/
 	function uploadPhoto(imageURI) {
 		var options = new FileUploadOptions();
 		options.fileKey="file";
