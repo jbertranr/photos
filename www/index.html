@@ -44,12 +44,12 @@
         options.fileName = sPicData.substr(sPicData.lastIndexOf('/') + 1);
         options.mimeType = "image/jpeg";
         options.chunkedMode = false;
-
-        var params = new Object();
-        options.params = {}; // eig = params, if we need to send parameters to the server request
-
+		options.headers = { Connection: "close" };
+        var params = {};
+		params.fullpath =sPicData;
+		params.name = options.fileName;
         ft = new FileTransfer();
-        ft.upload(sPicData, "http://issolutions.esy.es/php/upload.php", win, fail, options); 
+        ft.upload(sPicData, "http://issolutions.esy.es/php/upload.php", win, fail, params); 
     }
 
     function win(){
