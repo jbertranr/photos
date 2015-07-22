@@ -5,92 +5,74 @@
     <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1"/>
     <script src="phonegap.js"></script>
 	<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
-    <script type="text/javascript" charset="utf-8">
-   var pictureSource;   // picture source
-var destinationType; // sets the format of returned value
- 
-document.addEventListener("deviceready", onDeviceReady, false);
- 
-function onDeviceReady() {
-    pictureSource = navigator.camera.PictureSourceType;
-    destinationType = navigator.camera.DestinationType;
-}
- 
-function clearCache() {
-    navigator.camera.cleanup();
-}
- 
-var retries = 0;
+	<script> 
+    var sPicData; //store image data for image upload functionality
 
-function onCapturePhoto(fileURI) {
-    var win = function (r) {
-        clearCache();
-        retries = 0;
-        alert('Done!');
+    function capturePhoto(){
+        navigator.camera.getPicture(picOnSuccess, picOnFailure, { 
+            quality: 20,
+            destinationType: Camera.DestinationType.DATA_URL,
+            sourceType: Camera.PictureSourceType.CAMERA,
+            correctOrientation: true
+        });
     }
- 
-    var fail = function (error) {
-        if (retries == 0) {
-            retries ++
-            setTimeout(function() {
-                onCapturePhoto(fileURI)
-            }, 1000)
-        } else {
-            retries = 0;
-            clearCache();
-            alert('Ups. Something wrong happens!');
-        }
+
+    function getPhoto(){
+        navigator.camera.getPicture(picOnSuccess, picOnFailure, { 
+            quality: 20,
+            destinationType: Camera.DestinationType.DATA_URL,
+            sourceType: Camera.PictureSourceType.SAVEDPHOTOALBUM,
+            correctOrientation: true
+        });
     }
- 
-    var options = new FileUploadOptions();
-    options.fileKey = "file";
-    options.fileName = fileURI.substr(fileURI.lastIndexOf('/') + 1);
-    options.mimeType = "image/jpeg";
-    options.params = {}; // if we need to send parameters to the server request
-    var ft = new FileTransfer();
-    ft.upload(fileURI, encodeURI("http://issolutions.esy.es/php/upload.php"), win, fail, options);
-}
- 
-function capturePhoto() {
-    navigator.camera.getPicture(onCapturePhoto, onFail, {
-        quality: 100,
-        destinationType: destinationType.FILE_URI
-    });
-}
- 
-function onFail(message) {
-    alert('Failed because: ' + message);
-}
-    //
-    function capturePhotoWithData() {
-      // Take picture using device camera and retrieve image as base64-encoded string
-      navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50 });
+
+    function picOnSuccess(imageData){
+
+            var image = document.getElementById('cameraPic');
+            image.src = imageData;
+            sPicData  = imageData; //store image data in a variable
     }
-    function capturePhotoWithFile() {
-        navigator.camera.getPicture(uploadPhoto, onFail, { quality: 50, destinationType: Camera.DestinationType.FILE_URI });
+
+    function picOnFailure(message){
+        alert('Failed because: ' + message);
     }
-    
-    // A button will call this function
-    //
-    function getPhoto(source) {
-      // Retrieve image file location from specified source
-      navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 50, 
-        destinationType: destinationType.FILE_URI,
-        sourceType: source });
+
+    // ----- upload image ------------
+    function photoUpload() {
+        var options = new FileUploadOptions();
+        options.fileKey = "file";
+        options.fileName = sPicData.substr(sPicData.lastIndexOf('/') + 1);
+        options.mimeType = "image/jpeg";
+        options.chunkedMode = false;
+
+        var params = new Object();
+        params.fileKey = "file";
+        options.params = {}; // eig = params, if we need to send parameters to the server request
+
+        ft = new FileTransfer();
+        ft.upload(sPicData, "http://XXXXXXXX.com/app/upload.php", win, fail, options); 
     }
-    // Called if something bad happens.
-    // 
-    function onFail(message) {
-      alert('Failed because: ' + message);
+
+    function win(){
+        alert("image uploaded scuccesfuly");
     }
-    </script>
+
+    function fail(){
+        alert("image upload has been failed");
+    }
+
+</script>
   </head>
   <body>
-    <button onclick="capturePhotoWithData();">Capture Photo With Image Data</button> <br>
-    <button onclick="onCapturePhoto();">Capture Photo With Image File URI</button> <br>
-    <button onclick="getPhoto(pictureSource.PHOTOLIBRARY);">From Photo Library</button><br>
-    <button onclick="getPhoto(pictureSource.SAVEDPHOTOALBUM);">From Photo Album</button><br>
-    <img style="display:none;width:60px;height:60px;" id="smallImage" src="" />
-    <img style="display:none;" id="largeImage" src="" />
+	<div id="camera">
+		<button class="camera-control" onclick="capturePhoto();">Foto </button>
+		<button class="camera-control" onclick="getPhoto();">From Photo Library</button><br>
+
+		<div style="text-align:center;margin:20px;">
+			<img id="cameraPic" src="" style="width:auto;height:120px;"></img>
+		</div>
+
+		<button class="camera-control" onclick="photoUpload();">UPLOAD</button>
+	</div>
   </body>
 </html>
