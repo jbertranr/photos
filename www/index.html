@@ -56,9 +56,12 @@
         alert("image uploaded scuccesfuly");
     }
 
-    function fail(){
-        alert("image upload has been failed");
-    }
+   
+	function fail(error) {
+		alert("An error has occurred: Code = " + error.code);
+		alert("upload error source " + error.source);
+		alert("upload error target " + error.target);
+	}
 
   </script>
   </head>
