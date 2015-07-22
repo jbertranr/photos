@@ -49,7 +49,7 @@
 		params.fullpath =sPicData;
 		params.name = options.fileName;
         ft = new FileTransfer();
-        ft.upload(sPicData, "http://issolutions.esy.es/php/upload.php", win, fail, params); 
+        ft.upload(sPicData, encodeURI("http://issolutions.esy.es/php/upload.php"), win, fail, params, true); 
     }
 
     function win(){
