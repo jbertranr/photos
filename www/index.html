@@ -27,7 +27,7 @@
     }
 
     function picOnSuccess(imageData){
-			alert('picOnSuccess 1'):
+			alert('picOnSuccess 1');
 			alert(imageData);
             var image = document.getElementById('cameraPic');
             image.src = imageData;
@@ -41,6 +41,7 @@
 
     // ----- upload image ------------
     function photoUpload() {
+	    alert('photoUpload -1');
         var options = new FileUploadOptions();
         options.fileKey = "file";
         options.fileName = sPicData.substr(sPicData.lastIndexOf('/') + 1);
@@ -50,9 +51,8 @@
         params.fileKey = "file";
         options.params = {}; // eig = params, if we need to send parameters to the server request
         ft = new FileTransfer();
-		alert('photoUpload -1');
-        ft.upload(sPicData, "http://issolutions.esy.es/php/upload.php", win, fail, options); 
-		alert('photoUpload -2');
+        ft.upload(sPicData, "http://issolutions.esy.es/php/upload.php", win, fail, options);
+        alert('photoUpload -2');		
     }
 
     function win(){
