@@ -1,4 +1,4 @@
-
+﻿
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
     <head>
@@ -173,7 +173,7 @@
 			
 			
 			
-			// Intentar fer tots els ajustaments en aquesta funció
+			// Intentar fer tots els ajustaments en aquesta funciÃ³
 			function ajustaFinestres(){			
 				var resizeTimer = null;			
 				if (resizeTimer) clearTimeout(resizeTimer);			
@@ -220,7 +220,7 @@
 				//visor.map(seleccionada);
 			}
 				 
-			function baseLayerDetail(seleccionada){				// S'haurà d'incorporar a la funció anterior	
+			function baseLayerDetail(seleccionada){				// S'haurÃ  d'incorporar a la funciÃ³ anterior	
 				$.each(visor.config.layers.base, function(i,item){
 					 if (visor.mapDetail.hasLayer(item)){ visor.mapDetail.removeLayer(item);}			 
 				});
@@ -252,11 +252,11 @@
 					mostra = i + count;
 					// Selecciona la capa overlay activa   
 					if (visor.map.hasLayer(item)){
-						// Si és el darrer i és demana el següent torna a començar
+						// Si Ã©s el darrer i Ã©s demana el segÃ¼ent torna a comenÃ§ar
 						if (i == overlayLayersLength - 1 && count > 0 ){
 							mostra = 0;				
 						}
-						// Si és el primer i es demana l'anterior
+						// Si Ã©s el primer i es demana l'anterior
 						if (i == 0 && count < 0 ){
 							mostra = overlayLayersLength - 1;
 						}
@@ -304,10 +304,10 @@
 						.addTo(visor.map)
 						.bindPopup(
 							"<h2 style='font-family:Arial;font-size:1.5em;height:20px'>" 
-							+ ' La teva posició'  
+							+ ' La teva posiciÃ³'  
 							+  " <img width='30' src='images/troba.png' style='float:left;margin-right:2em'/ >"	
 							+ "</h2>" 
-							+ ' Posició actual aproximada'					
+							+ ' PosiciÃ³ actual aproximada'					
 							);
 				}							
 			}
@@ -350,7 +350,7 @@
 					'lng' : 0,
 					'alt' : 0,
 					'acc' : 0 };
-				//alert('No estan activades les opcions de geolocalització');
+				//alert('No estan activades les opcions de geolocalitzaciÃ³');
 				visor.posicioActual = { 'trobat' : 1,
 										'lat' : 43.5419 ,
 										'lng' : 2.447,
@@ -397,7 +397,7 @@
 							attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, '
 								+
 								'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-								'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+								'Imagery Â© <a href="http://mapbox.com">Mapbox</a>',
 							id: 'examples.map-i875mjb7'
 						});
 						break;
@@ -416,14 +416,17 @@
 							attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, '
 								+
 								'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-								'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+								'Imagery Â© <a href="http://mapbox.com">Mapbox</a>',
 							id: 'examples.map-i875mjb7'
 						});
 						break;
 				}	
 	
-				visor.map.addLayer(capa);				
-			// Localització utilitzant el plugin de cordova
+				visor.map.addLayer(capa);		
+				visor.map.on('click', function(e) {        
+						uploadFromGallery();       
+					});						
+			// LocalitzaciÃ³ utilitzant el plugin de cordova
 			//   This method accepts a `Position` object, which contains
 			//   the current GPS coordinates
 			//
@@ -432,7 +435,7 @@
 			//
 			//navigator.geolocation.watchPosition(onSuccessPlug, onErrorPlug, { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true });
 
-			// Localització per navegador
+			// LocalitzaciÃ³ per navegador
 //			visor.map.locate({setView:true, maxZoom:16});
 //		    visor.map.on('locationfound', onLocationFound);
 			//		L.control.locate().addTo(visor.map);
@@ -461,11 +464,11 @@
 					},
 					showPopup: true, // display a popup when the user click on the inner marker
 					strings: {
-						title: "Troba la meva posició",  // title of the locate control
+						title: "Troba la meva posiciÃ³",  // title of the locate control
 						metersUnit: "meters", // string for metric units
 						feetUnit: "feet", // string for imperial units
-						popup: "Posició Actual",  // text to appear if user clicks on circle
-						outsideMapBoundsMsg: "Et trobes fora dels límits del mapa" // default message for onLocationOutsideMapBounds
+						popup: "PosiciÃ³ Actual",  // text to appear if user clicks on circle
+						outsideMapBoundsMsg: "Et trobes fora dels lÃ­mits del mapa" // default message for onLocationOutsideMapBounds
 					},
 					locateOptions: {}  // define location options e.g enableHighAccuracy: true or maxZoom: 10
 				});
@@ -579,7 +582,7 @@
     </head>
     
 	<body>
-		<!--------------------------------  Pàgina Portada ----------------------------------------> 	 
+		<!--------------------------------  PÃ gina Portada ----------------------------------------> 	 
 		<!--div data-role="page" id="portada" style="width:100%;height:100%;margin:0px;">  
             <div data-role="content" style="width:100%;height:100%;padding:0em" id ="fotoPortada" >   		
 				<a href="#pageMap">
@@ -589,13 +592,13 @@
 				</a>
 				
 				<div style='text-align: center; color: rgb(255, 255, 255); background-color:#0589c7; height:auto; width: 100%; padding: 10px; position: absolute; bottom: 0px;'>
-					Compartiu la vostra localització si voleu veure la vostra posició en el plànol
+					Compartiu la vostra localitzaciÃ³ si voleu veure la vostra posiciÃ³ en el plÃ nol
 				</div>
 
 			</div>
         </div-->
 		
-		<!--------------------------------  Pàgina Mapa -------------------------------------------> 	 
+		<!--------------------------------  PÃ gina Mapa -------------------------------------------> 	 
     	<div data-role="page" id="pageMap" > 
 			<!------------------ Header ---------------> 	
             <div data-role="header"  role="banner" id = "header" style="display:none;height:0px;z-index: 1; box-shadow:0px 2px 6px #444444;">				
@@ -624,7 +627,7 @@
 
 
 		
-		<!--------------------------------  Pàgina Detall Element ---------------------------------> 		
+		<!--------------------------------  PÃ gina Detall Element ---------------------------------> 		
 		<div data-role="page" id="pageDetail"> 			
 			
 			<!------------------ Header ---------------> 	
