@@ -411,8 +411,7 @@
 
 				visor.map.addLayer(capa);
 				
-			// Localització utilitzant el plugin
-			// onSuccess Callback
+			// Localització utilitzant el plugin de cordova
 			//   This method accepts a `Position` object, which contains
 			//   the current GPS coordinates
 			//
@@ -432,7 +431,7 @@
 
 			// Options: throw an error if no update is received every 30 seconds.
 			//
-			var watchID = navigator.geolocation.watchPosition(onSuccessPlug, onErrorPlug, { timeout: 10000 });
+			var watchID = navigator.geolocation.watchPosition(onSuccessPlug, onErrorPlug, { timeout: 10000, enableHighAccuracy: true });
 
 		// Localització per navegador		
 		//		visor.map.on('locationfound', onLocationFound);
