@@ -129,7 +129,8 @@
 				'filtre' : {  'seleccionat' : 0 , 'valoracioMin':0, 'valoracioMax': 100, 'categoria': 'platja.png', 'distancia': 40000 },
 				'cerclePrecisio':null,
 				'capaPosicio':null,
-				'posicioActual':0
+				'posicioActual':0,
+				'watchID':{}
 			};
 			
 			$( document ).on('pagebeforehide' ,'#pagetwo', function(){ 
@@ -415,23 +416,10 @@
 			//   This method accepts a `Position` object, which contains
 			//   the current GPS coordinates
 			//
-			function onSuccessPlug(position) {
-				var element = document.getElementById('geolocation');
-				element.innerHTML = 'Latitude: '  + position.coords.latitude      + '<br />' +
-									'Longitude: ' + position.coords.longitude     + '<br />' +
-									'<hr />'      + element.innerHTML;
-			}
-
-			// onError Callback receives a PositionError object
-			//
-			function onErrorPlug(error) {
-				alert('code: '    + error.code    + '\n' +
-					  'message: ' + error.message + '\n');
-			}
 
 			// Options: throw an error if no update is received every 30 seconds.
 			//
-			var watchID = navigator.geolocation.watchPosition(onSuccessPlug, onErrorPlug, { timeout: 10000, enableHighAccuracy: true });
+			visor.watchID = navigator.geolocation.watchPosition(onSuccessPlug, onErrorPlug, { timeout: 10000, enableHighAccuracy: true });
 
 		// Localització per navegador		
 		//		visor.map.on('locationfound', onLocationFound);
@@ -496,6 +484,25 @@
 				
 			}
 
+			
+			function onSuccessPlug(position) {
+				var element = document.getElementById('geolocation');
+				element.innerHTML = 'Latitude: '  + position.coords.latitude      + '<br />' +
+									'Longitude: ' + position.coords.longitude     + '<br />' +
+									'<hr />'      + element.innerHTML;
+			}
+
+			// onError Callback receives a PositionError object
+			//
+			function onErrorPlug(error) {
+				alert('code: '    + error.code    + '\n' +
+					  'message: ' + error.message + '\n');
+			}
+			
+			
+			
+			
+			
 			function uploadFromGallery_2() {
 
 				//Retrieve image file location from specified source
