@@ -427,7 +427,7 @@
 
 			// Options: throw an error if no update is received every 30 seconds.
 			//
-			navigator.geolocation.watchPosition(onSuccessPlug, onErrorPlug, { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true });
+			//navigator.geolocation.watchPosition(onSuccessPlug, onErrorPlug, { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true });
 
 			// Localització per navegador
 //			visor.map.locate({setView:true, maxZoom:16});
@@ -495,10 +495,10 @@
 
 			
 			function onSuccessPlug(position) {
-				var element = document.getElementById('geolocation');
-				element.innerHTML = 'Latitude: '  + position.coords.latitude      + '<br />' +
-									'Longitude: ' + position.coords.longitude     + '<br />' +
-									'<hr />'      + element.innerHTML;
+				//var element = document.getElementById('geolocation');
+				alert (				'Latitude: '  + position.coords.latitude      + '<br />' +
+									'Longitude: ' + position.coords.longitude     + '<br />' );
+									
 			}
 
 			// onError Callback receives a PositionError object
