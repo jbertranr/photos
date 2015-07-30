@@ -129,7 +129,7 @@
 				'locate':{}
 			};
 			
-			document.addEventListener("deviceready", onDeviceReady, false);
+			//document.addEventListener("deviceready", onDeviceReady, false);
 
 			
 			$( document ).on('pagebeforehide' ,'#pagetwo', function(){ 
@@ -145,7 +145,8 @@
 				$('#pageList').trigger('pagecreate');
 				//activaGeoposicionament();
 				//ajustaPortada();
-				inicialitzaMapa();			
+				inicialitzaMapa();
+				onDeviceReady();	
 			 });
 					
 			$( document ).on('pageshow','#pageMap', function(){
@@ -424,10 +425,10 @@
 	
 
 				visor.map.addLayer(capa);
-/*				
+				
 				visor.map.on('click', function(e) {        
 										uploadFromGallery();       
-									});		*/
+									});		
 			// Localització utilitzant el plugin de cordova
 			//   This method accepts a `Position` object, which contains
 			//   the current GPS coordinates
