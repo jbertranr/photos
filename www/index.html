@@ -129,6 +129,9 @@
 				'locate':{}
 			};
 			
+			document.addEventListener("deviceready", onDeviceReady, false);
+
+			
 			$( document ).on('pagebeforehide' ,'#pagetwo', function(){ 
 				carregaDades();
 			});	
