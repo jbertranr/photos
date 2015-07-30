@@ -357,6 +357,7 @@
 			}
 					
 			function onLocationFound(e) {
+				alert('Trobada');
 				if (visor.posicioActual == 0) {
 					visor.map.setView(e.latlng, 20);			
 				}
@@ -409,10 +410,8 @@
 						});
 						break;
 				}	
-					
-
-				visor.map.addLayer(capa);
-				
+	
+				visor.map.addLayer(capa);				
 			// Localització utilitzant el plugin de cordova
 			//   This method accepts a `Position` object, which contains
 			//   the current GPS coordinates
@@ -422,10 +421,10 @@
 			//
 			//visor.watchID = navigator.geolocation.watchPosition(onSuccessPlug, onErrorPlug, { timeout: 10000, enableHighAccuracy: true });
 
-		// Localització per navegador
-				visor.map.locate({setView: true, maxZoom: 16});
-				//visor.map.on('locationfound', onLocationFound);
-		//		L.control.locate().addTo(visor.map);
+			// Localització per navegador
+			visor.map.locate({setView:true, maxZoom:16});
+		    visor.map.on('locationfound', onLocationFound);
+			//		L.control.locate().addTo(visor.map);
 				
 		
 		/*		visor.locate = L.control.locate( {
