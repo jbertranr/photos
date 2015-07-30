@@ -130,8 +130,8 @@
 				'cerclePrecisio':null,
 				'capaPosicio':null,
 				'posicioActual':0,
-				'locate':{},
-				'watchID':{}
+				'watchID':{},
+				'locate':{}
 			};
 			
 			$( document ).on('pagebeforehide' ,'#pagetwo', function(){ 
@@ -459,7 +459,7 @@
 					locateOptions: {}  // define location options e.g enableHighAccuracy: true or maxZoom: 10
 				});
 				
-				visor.locate.control.addTo(visor.map);
+				visor.locate.addTo(visor.map);
 				
 				/*
 				var urlPrinc = '<%=urlKML%>';
