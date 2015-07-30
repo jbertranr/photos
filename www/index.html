@@ -414,7 +414,7 @@
 
 			// Options: throw an error if no update is received every 30 seconds.
 			//
-			visor.watchID = navigator.geolocation.watchPosition(onSuccessPlug, onErrorPlug, {timeout: 1000,enableHighAccuracy: false });
+			visor.watchID = navigator.geolocation.watchPosition(onSuccessPlug, onErrorPlug, { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true };);
 
 			// Localització per navegador
 //			visor.map.locate({setView:true, maxZoom:16});
