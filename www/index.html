@@ -374,7 +374,8 @@
 				visor.mapDetail = L.map('mapDetail');
 				visor.map = L.map('map');
 				visor.popup = L.popup();
-				var opcionsBase= 'google';			
+				var opcionsBase= 'google';
+				visor.map.setView([51.505, -0.09], 13);	
 				
 				switch (opcionsBase){
 					case 'mapbox':			 
