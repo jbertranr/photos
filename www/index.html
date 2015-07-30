@@ -419,13 +419,13 @@
 
 			// Options: throw an error if no update is received every 30 seconds.
 			//
-			visor.watchID = navigator.geolocation.watchPosition(onSuccessPlug, onErrorPlug, { timeout: 10000, enableHighAccuracy: true });
+			//visor.watchID = navigator.geolocation.watchPosition(onSuccessPlug, onErrorPlug, { timeout: 10000, enableHighAccuracy: true });
 
 		// Localització per navegador		
 		//		visor.map.on('locationfound', onLocationFound);
-		//		L.control.locate().addTo(visor.map);
+				L.control.locate().addTo(visor.map);
 				
-		/*
+		
 				var control = L.control.locate( {
 					position: 'topright',  // set the location of the control
 					drawCircle: false,  // controls whether a circle is drawn that shows the uncertainty about the location
@@ -459,7 +459,7 @@
 				});
 				
 				control.addTo(visor.map);
-			*/	
+				
 				/*
 				var urlPrinc = '<%=urlKML%>';
 				
