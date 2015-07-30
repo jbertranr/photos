@@ -411,8 +411,32 @@
 
 				visor.map.addLayer(capa);
 				
-				visor.map.on('locationfound', onLocationFound);
-				L.control.locate().addTo(visor.map);
+			// Localització utilitzant el plugin
+			// onSuccess Callback
+			//   This method accepts a `Position` object, which contains
+			//   the current GPS coordinates
+			//
+			function onSuccessPlug(position) {
+				var element = document.getElementById('geolocation');
+				element.innerHTML = 'Latitude: '  + position.coords.latitude      + '<br />' +
+									'Longitude: ' + position.coords.longitude     + '<br />' +
+									'<hr />'      + element.innerHTML;
+			}
+
+			// onError Callback receives a PositionError object
+			//
+			function onErrorPlug(error) {
+				alert('code: '    + error.code    + '\n' +
+					  'message: ' + error.message + '\n');
+			}
+
+			// Options: throw an error if no update is received every 30 seconds.
+			//
+			var watchID = navigator.geolocation.watchPosition(onSuccessPlug, onErrorPlug, { timeout: 10000 });
+
+		// Localització per navegador		
+		//		visor.map.on('locationfound', onLocationFound);
+		//		L.control.locate().addTo(visor.map);
 				
 		/*
 				var control = L.control.locate( {
