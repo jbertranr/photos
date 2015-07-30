@@ -422,12 +422,13 @@
 			//
 			//visor.watchID = navigator.geolocation.watchPosition(onSuccessPlug, onErrorPlug, { timeout: 10000, enableHighAccuracy: true });
 
-		// Localització per navegador		
-		//		visor.map.on('locationfound', onLocationFound);
+		// Localització per navegador
+				visor.map.locate({setView: true, maxZoom: 16});
+				//visor.map.on('locationfound', onLocationFound);
 		//		L.control.locate().addTo(visor.map);
 				
 		
-				visor.locate = L.control.locate( {
+		/*		visor.locate = L.control.locate( {
 					position: 'topright',  // set the location of the control
 					drawCircle: true,  // controls whether a circle is drawn that shows the uncertainty about the location
 					follow: false,  // follow the user's location
@@ -459,7 +460,7 @@
 					locateOptions: {}  // define location options e.g enableHighAccuracy: true or maxZoom: 10
 				});
 				
-				visor.locate.addTo(visor.map);
+				visor.locate.addTo(visor.map);*/
 				
 				/*
 				var urlPrinc = '<%=urlKML%>';
