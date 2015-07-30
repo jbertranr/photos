@@ -165,9 +165,8 @@
 			
 			function onDeviceReady() {
 				//navigator.geolocation.getCurrentPosition(onSuccess, onError);
-		      	 alert('Activa GPS');
-				 navigator.geolocation.getCurrentPosition(onSuccessPlug, onErrorPlug, { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true });
-
+		      	 //alert('Activa GPS');
+				 navigator.geolocation.getCurrentPosition(successGeo, onErrorPlug, { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true });
 			}
 
 			
