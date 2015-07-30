@@ -94,9 +94,9 @@
         <script type="text/javascript" src="http://code.jquery.com/mobile/1.4.3/jquery.mobile-1.4.3.min.js"></script>
         <script type="text/javascript" src="http://leafletjs.com/dist/leaflet.js"></script>       
 		<script src="js/locate/L.Control.Locate.min.js" ></script>
-        <script src="http://maps.google.com/maps/api/js?v=3.2&sensor=false"></script>
-        <script src="js/leaflet-plugins-master/layer/tile/Google.js"></script>
-        <script src="js/leaflet-plugins-master/layer/vector/KML.js"></script>
+        <!--script src="http://maps.google.com/maps/api/js?v=3.2&sensor=false"></script-->
+        <!--script src="js/leaflet-plugins-master/layer/tile/Google.js"></script-->
+        <!--script src="js/leaflet-plugins-master/layer/vector/KML.js"></script-->
 		<script type="text/javascript">	
 		
 		
@@ -374,7 +374,7 @@
 				visor.mapDetail = L.map('mapDetail');
 				visor.map = L.map('map');
 				visor.popup = L.popup();
-				var opcionsBase= 'google';
+				var opcionsBase= 'mapbox';
 				visor.map.setView([51.505, -0.09], 13);	
 				
 				switch (opcionsBase){
@@ -413,7 +413,7 @@
 				visor.map.addLayer(capa);
 				
 				visor.map.on('locationfound', onLocationFound);
-		
+		/*
 				var control = L.control.locate( {
 					position: 'topright',  // set the location of the control
 					drawCircle: false,  // controls whether a circle is drawn that shows the uncertainty about the location
@@ -446,10 +446,8 @@
 					locateOptions: {}  // define location options e.g enableHighAccuracy: true or maxZoom: 10
 				});
 				
-				
-				
 				control.addTo(visor.map);
-				
+			*/	
 				/*
 				var urlPrinc = '<%=urlKML%>';
 				
