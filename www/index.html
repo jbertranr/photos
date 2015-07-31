@@ -133,6 +133,7 @@
 			$( document ).bind( "mobileinit", function() {
 				// Make your jQuery Mobile framework configuration changes here!
 				$.mobile.allowCrossDomainPages = true;
+				$.support.cors = true;
 			});
 			$( document ).on('pagebeforehide' ,'#pagetwo', function(){ 
 				carregaDades();
@@ -571,7 +572,12 @@
 					data: params ,
 					success: function(data){
 						alert('Guardat BBDD');
-					}			
+					},
+					error: function(xhr, textStatus, errorThrown){
+						alert("There was an error: The server reported: " + xhr.responseText 
+							+ "\nstatus: " + textStatus 
+							+ "\nerror: " + errorThrown);
+					}										
 				});
 			}
 
