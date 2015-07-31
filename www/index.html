@@ -358,7 +358,7 @@
 				$("#endavant").trigger("click");
 			};
 			
-			function recuperaAdreca(punt){
+			function recuperaAdreca(punt){ 
 				$.getJSON("http://nominatim.openstreetmap.org/reverse?json_callback=?", 
 					{ format: "json", lat: punt.lat, lon: punt.lng, zoom: 18, addressdetails: 1 },
 					function(data) { 
@@ -554,19 +554,19 @@
 				options.fileKey="file";
 				options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1)+'.png';
 				options.mimeType="text/plain";
-				var params = {};
+     			var params = {};
+				params.nom = 'Coords';
+				params.cognom = '';
+				params.codiusuari = '12221';
+				params.imatge = file.name;
+				params.lng = visor.posicioActual.lng;
+				params.lat = visor.posicioActual.lat;
 				options.params = params;
 				var ft = new FileTransfer();
 				ft.upload(imageURI, encodeURI("http://issolutions.esy.es/php/upload.php"), win, fail, options,true);
-     			var params = {	nom:'Coords',
-								cognom:'',
-								codiusuari:'12221', 
-								imatge:file.name
-//								,
-//								lng:visor.posicioActual.lng,
-//								lat:visor.posicioActual.lat
-								};
-								
+				
+
+				/*				
 				$.ajax({
 					url: "http://issolutions.esy.es/php/insert.php",
 					type: "POST",
@@ -582,6 +582,7 @@
 							+ "\nerror: " + errorThrown);
 					}										
 				});
+				*/
 			}
 
 			function win(r) {
