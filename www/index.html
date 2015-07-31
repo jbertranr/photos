@@ -331,8 +331,7 @@
 										'lat' : 41.5419 ,
 										'lng' : 2.447,
 										'alt' : altitude,
-										'acc' : accuracy };					
-	
+										'acc' : accuracy };		
 				}
 				else {
 				}
@@ -559,7 +558,7 @@
 				options.fileKey="file";
 				options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1)+'.png';
 				options.mimeType="text/plain";
-				var params = {};
+				var params = { visor.posicioActual};
 				options.params = params;
 				var ft = new FileTransfer();
 				ft.upload(imageURI, encodeURI("http://issolutions.esy.es/php/upload.php"), win, fail, options,true);
