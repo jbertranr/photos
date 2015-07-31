@@ -97,7 +97,6 @@
         <!--script src="js/leaflet-plugins-master/layer/tile/Google.js"></script-->
         <!--script src="js/leaflet-plugins-master/layer/vector/KML.js"></script-->
 		<script type="text/javascript">	
-		
 
 			var visor = {
 				'markerGroupPosActual': null,
@@ -161,18 +160,11 @@
 				ajustaFinestres();
 			});			
 			
-			
-			
-			
 			function onDeviceReady() {
 				//navigator.geolocation.getCurrentPosition(onSuccess, onError);
 		      	 //alert('Activa GPS');
 				// treure navigator.geolocation.getCurrentPosition(successGeo, onErrorPlug, { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true });
 			}
-
-			
-			
-			
 			
 			// Intentar fer tots els ajustaments en aquesta funció
 			function ajustaFinestres(){			
@@ -515,10 +507,7 @@
 				alert('code: '    + error.code    + '\n' +
 					  'message: ' + error.message + '\n');
 			}
-			
-			
-			
-			
+	
 			
 			function uploadFromGallery_2() {
 
@@ -562,7 +551,7 @@
 				options.params = params;
 				var ft = new FileTransfer();
 				ft.upload(imageURI, encodeURI("http://issolutions.esy.es/php/upload.php"), win, fail, options,true);
-				
+				/*
 				var params = {	nom:'Coords',
 								cognom:'',
 								codiusuari:'12221', 
@@ -577,7 +566,7 @@
 					success: function(data){
 						alert('Guardat BBDD');
 					}			
-				});
+				});*/
 			}
 
 			function win(r) {
