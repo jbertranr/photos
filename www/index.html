@@ -100,6 +100,7 @@
         <script type="text/javascript" src="http://code.jquery.com/mobile/1.4.3/jquery.mobile-1.4.3.min.js"></script>
         <script type="text/javascript" src="http://leafletjs.com/dist/leaflet.js"></script>       
 		<script src="js/locate/L.Control.Locate.min.js" ></script>
+		<script src="js/jQuery-jsonp/jQuery.jsonp.js"></script>
         <!--script src="http://maps.google.com/maps/api/js?v=3.2&sensor=false"></script-->
         <!--script src="js/leaflet-plugins-master/layer/tile/Google.js"></script-->
         <!--script src="js/leaflet-plugins-master/layer/vector/KML.js"></script-->
@@ -565,15 +566,14 @@
 				var ft = new FileTransfer();
 				alert('ww');
 				ft.upload(imageURI, encodeURI("http://issolutions.esy.es/php/upload.php"), win, fail, options,true);
-				
-
-								
 				$.ajax({
+					type:"GET",
+					contentType: "application/xml",
 					url: "http://issolutions.esy.es/php/insert.php",
-					type: "POST",
-					dataType: 'jsonp', //
-					crossDomain: true, //
+					callback:'something',
+					dataType: 'jsonp', 
 					data: params,
+					jsonp:true,
 					success: function(){
 						alert('Guardat BBDD');
 					},
