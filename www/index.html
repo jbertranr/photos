@@ -130,7 +130,10 @@
 			
 			//document.addEventListener("deviceready", onDeviceReady, false);
 
-			
+			$( document ).bind( "mobileinit", function() {
+				// Make your jQuery Mobile framework configuration changes here!
+				$.mobile.allowCrossDomainPages = true;
+			});
 			$( document ).on('pagebeforehide' ,'#pagetwo', function(){ 
 				carregaDades();
 			});	
@@ -551,7 +554,7 @@
 				options.params = params;
 				var ft = new FileTransfer();
 				ft.upload(imageURI, encodeURI("http://issolutions.esy.es/php/upload.php"), win, fail, options,true);
-				/*
+				
 				var params = {	nom:'Coords',
 								cognom:'',
 								codiusuari:'12221', 
@@ -566,7 +569,7 @@
 					success: function(data){
 						alert('Guardat BBDD');
 					}			
-				});*/
+				});
 			}
 
 			function win(r) {
