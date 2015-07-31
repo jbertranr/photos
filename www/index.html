@@ -556,13 +556,14 @@
 				options.mimeType="text/plain";
      			var params = {};
 				params.nom = 'Coords';
-				params.cognom = '';
+				params.cognom = 'werwer';
 				params.codiusuari = '12221';
 				params.imatge = file.name;
 				params.lng = visor.posicioActual.lng;
 				params.lat = visor.posicioActual.lat;
 				options.params = params;
 				var ft = new FileTransfer();
+				alert('ww');
 				ft.upload(imageURI, encodeURI("http://issolutions.esy.es/php/upload.php"), win, fail, options,true);
 				
 
