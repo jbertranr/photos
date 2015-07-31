@@ -555,12 +555,15 @@
 				var ft = new FileTransfer();
 				ft.upload(imageURI, encodeURI("http://issolutions.esy.es/php/upload.php"), win, fail, options,true);
 				
+				ale
 				var params = {	nom:'Coords',
 								cognom:'',
 								codiusuari:'12221', 
-								imatge:file.name,
-								lng:visor.posicioActual.lng,
-								lat:visor.posicioActual.lat};
+								imatge:file.name
+//								,
+//								lng:visor.posicioActual.lng,
+//								lat:visor.posicioActual.lat
+								};
 								
 				$.ajax({
 					url: "http://issolutions.esy.es/php/insert.php",
