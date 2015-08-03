@@ -558,9 +558,11 @@
 				params.cognom = 'werwer';
 				params.codiusuari = '12221';
 				params.imatge = options.fileName;//file.name;
-				params.lng = visor.posicioActual.lng;
-				alert(params.lng);
-				params.lat = visor.posicioActual.lat;
+				params.locate_lng = visor.posicioActual.lng;
+				params.locate_lat = visor.posicioActual.lat;
+				params.tap_lng = visor.map.getCenter().lng;
+				params.tap_lat = visor.map.getCenter().lat;				
+				//alert(params.lng);
 				options.params = params;
 				var ft = new FileTransfer();
 				alert('ww');
