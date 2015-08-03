@@ -314,26 +314,20 @@
 			}
 
 			function posicioTrobada(e) {
-				//alert(JSON.stringify(e));
 				var latitude = e.latlng.lat;
 				var longitude = e.latlng.lng;
-				//var altitude = e.coords.altitude;
-				//var accuracy = e.coords.accuracy;
-				//alert(latitude);			
 				var estatAnterior = visor.posicioActual.trobat;
-				visor.posicioActual = { 'trobat' : 1,
-										'lat' : latitude,
-										'lng' : longitude,
-										//'alt' : altitude,
-										//'acc' : accuracy 
+				visor.posicioActual = 	{ 'trobat' : 1,
+										'locate_lat' : latitude,
+										'locate_lng' : longitude,
+										'tap_lat' : visor.map.getCenter().lat,
+										'tap_lng' : visor.map.getCenter().lng
 										};
 										
 				if (latitude == 0 ) { 					
 					visor.posicioActual = { 'trobat' : 0,
-										//'lat' : 41.5419 ,
-									//	'lng' : 2.447,
-									//	'alt' : altitude,
-									//	'acc' : accuracy 
+										'lat' : 41.5419 ,
+										'lng' : 2.447,
 									};		
 				}
 				else {
