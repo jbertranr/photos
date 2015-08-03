@@ -553,14 +553,15 @@
 			function uploadPhoto(imageURI) {
 				var options = new FileUploadOptions();
 				options.fileKey="file";
-				options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1)+'.png';
+				options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);//+'.png';
 				options.mimeType="text/plain";
      			var params = {};
 				params.nom = 'Coords';
 				params.cognom = 'werwer';
 				params.codiusuari = '12221';
-				params.imatge = 'sssss';//file.name;
+				params.imatge = options.fileName;//file.name;
 				params.lng = visor.posicioActual.lng;
+				alert(params.lng);
 				params.lat = visor.posicioActual.lat;
 				options.params = params;
 				var ft = new FileTransfer();
