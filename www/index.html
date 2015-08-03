@@ -475,7 +475,7 @@
 				});
 				
 				visor.locate.addTo(visor.map);
-				visor.locate.on(locationfound, successGeo);
+				visor.map.on('locationfound', successGeo);
 				
 				
 				/*
