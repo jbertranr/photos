@@ -339,8 +339,8 @@
 				if ( estatAnterior == 0 ){
 					mostraPosicioActual();
 				}
-				mostraPosicioActual();
-				visor.posicioAnterior = visor.posicioActual;
+				//mostraPosicioActual();
+				//visor.posicioAnterior = visor.posicioActual;
 
 			}
 				
@@ -441,8 +441,7 @@
 //			visor.map.locate({setView:true, maxZoom:16});
 //		    visor.map.on('locationfound', onLocationFound);
 			//		L.control.locate().addTo(visor.map);
-				
-		
+	
 				visor.locate = L.control.locate( {
 					position: 'topright',  // set the location of the control
 					drawCircle: true,  // controls whether a circle is drawn that shows the uncertainty about the location
@@ -476,6 +475,8 @@
 				});
 				
 				visor.locate.addTo(visor.map);
+				visor.locate.on(locationfound, successGeo);
+				
 				
 				/*
 				var urlPrinc = '<%=urlKML%>';
