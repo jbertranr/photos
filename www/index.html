@@ -313,12 +313,12 @@
 				}							
 			}
 
-			function successGeo(position) {
+			function posicioTrobada(position) {
 				var latitude = position.coords.latitude;
 				var longitude = position.coords.longitude;
 				var altitude = position.coords.altitude;
 				var accuracy = position.coords.accuracy;
-								
+				alert(latitude);			
 				var estatAnterior = visor.posicioActual.trobat;
 				visor.posicioActual = { 'trobat' : 1,
 										'lat' : latitude,
@@ -475,8 +475,7 @@
 				});
 				
 				visor.locate.addTo(visor.map);
-				visor.map.on('locationfound', successGeo);
-				
+				visor.map.on('locationfound', posicioTrobada);	
 				
 				/*
 				var urlPrinc = '<%=urlKML%>';
