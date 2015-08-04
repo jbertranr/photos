@@ -318,10 +318,8 @@
 				var longitude = e.latlng.lng;
 				var estatAnterior = visor.posicioActual.trobat;
 				visor.posicioActual = 	{ 'trobat' : 1,
-										'locate_lat' : latitude,
-										'locate_lng' : longitude,
-										'tap_lat' : visor.map.getCenter().lat,
-										'tap_lng' : visor.map.getCenter().lng
+										'lat' : latitude,
+										'lng' : longitude
 										};
 										
 				if (latitude == 0 ) { 					
@@ -560,12 +558,12 @@
 				params.imatge = options.fileName;//file.name;
 				params.locate_lng = parseFloat(visor.posicioActual.lng);
 				params.locate_lat = parseFloat(visor.posicioActual.lat);
-				params.tap_lng = parseFloat(visor.map.getCenter().lng);
-				params.tap_lat = parseFloat(visor.map.getCenter().lat);				
+				params.center_lng = parseFloat(visor.map.getCenter().lng);
+				params.center_lat = parseFloat(visor.map.getCenter().lat);				
 				alert(params.locate_lng + ' '
 					+ params.locate_lat + ' '
-					+ params.tap_lng + ' '
-					+ params.tap_lat );
+					+ params.center_lng    + ' '
+					+ params.center_lat );
 				options.params = params;
 				var ft = new FileTransfer();
 				alert('ww');
