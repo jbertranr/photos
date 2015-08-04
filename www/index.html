@@ -548,8 +548,11 @@
 			function recuperaElements(){
 				$.getJSON( "http://issolutions.esy.es/php/select.php", function( data ) {
 					$.each(data.punts,function(i,punt){
-						L.marker([punt.fl_center_coordX, fl_center_coordY]).addTo(visor.map)
-							.bindPopup('A pretty CSS3 popup.<br> Easily customizable.');		
+						alert(punt.fl_center_coordX);
+						L.marker([parseFloat(punt.fl_center_coordX), parseFloat(fl_center_coordY)]).addTo(visor.map)
+							.bindPopup('<img width=200 height=100 src="' 
+										+ punt.vc_imatge 
+										+ '" />');		
 					}); 
 				});
 			}
