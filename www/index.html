@@ -549,8 +549,8 @@
 				$.getJSON( "http://issolutions.esy.es/php/select.php", function( data ) {
 					$.each(data.punts,function(i,punt){
 						alert(punt.imatge);				
-					} 
-				}
+					}); 
+				});
 			}
 			
 			
@@ -585,6 +585,7 @@
 					data: params,
 					success: function(){
 						alert('Imatge Pujada a la base de dades');
+						recuperaElements();
 					},
 					error: function(xhr, textStatus, errorThrown){
 						alert("Error detectat: " + xhr.responseText 
