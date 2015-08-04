@@ -549,10 +549,11 @@
 				$.getJSON( "http://issolutions.esy.es/php/select.php", function( data ) {
 					$.each(data.punts,function(i,punt){
 						alert(punt.fl_center_coordX);
-						L.marker([parseFloat(punt.fl_center_coordX), parseFloat(fl_center_coordY)]).addTo(visor.map)
-							.bindPopup('<img width=200 height=100 src="' 
-										+ punt.vc_imatge 
-										+ '" />');		
+					//	L.marker([parseFloat(punt.fl_center_coordX), parseFloat(fl_center_coordY)])
+					//		.addTo(visor.map)
+					//		.bindPopup('<img width=200 height=100 src="' 
+					//					+ punt.vc_imatge 
+					//					+ '" />');		
 					}); 
 				});
 			}
