@@ -545,7 +545,18 @@
 				});
 			}
 		*/
-
+			function recuperaElements(){
+				$.getJSON( "http://issolutions.esy.es/php/select.php", function( data ) {
+					$.each(data.punts,function(i,punt){
+						alert(punt.imatge);				
+					} 
+				}
+			}
+			
+			
+			
+			
+			
 			function uploadPhoto(imageURI) {
 				var options = new FileUploadOptions();
 				options.fileKey="file";
@@ -573,7 +584,7 @@
 					type: "POST",
 					data: params,
 					success: function(){
-						alert('Guardat BBDD');
+						alert('Imatge Pujada a la base de dades');
 					},
 					error: function(xhr, textStatus, errorThrown){
 						alert("Error detectat: " + xhr.responseText 
