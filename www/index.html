@@ -123,6 +123,7 @@
 				'valoracio' : null,
 				'icon' : null,
 				'markerPosicioActual' : {},
+				'totMarker' : {},
 				'markerPosicioActualPresent' : '0',
 				'config' : { 'layers' : { 'base' : [], 'overlay' : [] }},
 				'posicioActual' : { 'trobat': 0, 'lat' : 0,	'lng' : 0, 'alt' : 0, 'acc' : 0 },
@@ -546,10 +547,11 @@
 			}
 		*/
 			function recuperaElements(){
+				visor.map.removeLayer(visor.totMarker);			
 				$.getJSON( "http://issolutions.esy.es/php/select.php", function( data ) {
 					$.each(data.punts,function(i,punt){
 						//alert(punt.fl_center_coordX);
-					L.marker([punt.fl_center_coordY, punt.fl_center_coordX])
+					visor.totMarker = L.marker([punt.fl_center_coordY, punt.fl_center_coordX])
 							.addTo(visor.map)
 							.bindPopup('<img width=200 src="' 
 										+ punt.vc_imatge 
@@ -557,11 +559,7 @@
 					}); 
 				});
 			}
-			
-			
-			
-			
-			
+				
 			function uploadPhoto(imageURI) {
 				var options = new FileUploadOptions();
 				options.fileKey="file";
