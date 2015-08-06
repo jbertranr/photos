@@ -7,7 +7,7 @@
 			version = "1.0.0">
 
     <name>photos</name>
-
+	<gap:splash src="home.png" />
     <description> 
         Algunes proves més per anar fent
     </description>
