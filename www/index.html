@@ -12,6 +12,11 @@
         <link rel="stylesheet" href="http://leafletjs.com/dist/leaflet.css" />
 		<link rel="stylesheet" href="js/locate/L.Control.Locate.min.css" />		
 		<style>	
+			.controlMapa{cursor:pointer;z-index:999999;background-color:#333333;opacity:0.4;width:50px;height:50px;color:#ffffff;font-family:verdana;font-weight:bold;font-size:35px;text-align:center}
+			.controlMapa-junt {margin-top:3px}
+			.controlMapa-separat {margin-top:10px}
+						
+			.caixaControl{ z-index:999999;position:fixed;right:5px;top:40px; }
 			
 			@font-face {
 				font-family: novaFont;
@@ -134,7 +139,8 @@
 				'capaPosicio':null,
 				'posicioActual':0,
 				'watchID':{},
-				'locate':{}
+				'locate':{},
+				'totMarker': new L.FeatureGroup()
 			};
 			
 			//document.addEventListener("deviceready", onDeviceReady, false);
@@ -547,18 +553,22 @@
 			}
 		*/
 			function recuperaElements(){
-				visor.map.removeLayer(visor.totMarker);			
-				$.getJSON( "http://issolutions.esy.es/php/select.php", function( data ) {
+				visor.map.removeLayer(visor.totMarker);
+				// visor.map.removeLayer(visor.totMarker);			
+				$.getJSON( "php/test.json", function( data ) {
+					visor.totMarker = new L.FeatureGroup();
 					$.each(data.punts,function(i,punt){
 						//alert(punt.fl_center_coordX);
-					visor.totMarker = L.marker([punt.fl_center_coordY, punt.fl_center_coordX])
-							.addTo(visor.map)
+						var marker = L.marker([punt.fl_center_coordY, punt.fl_center_coordX])
 							.bindPopup('<img width=200 src="' 
 										+ punt.vc_imatge 
-										+ '" />');		
+										+ '" />');
+						visor.totMarker.addLayer(marker);						
 					}); 
+				visor.map.addLayer(visor.totMarker);
 				});
 			}
+
 				
 			function uploadPhoto(imageURI) {
 				var options = new FileUploadOptions();
@@ -648,7 +658,25 @@
 			
 			<!------------------ Content --------------->
             <div data-role="content" id="contMapa"> 
-					<div id="map" style="height:100%;"></div>
+			
+			
+				<div class="caixaControl" >
+				
+					<div class="controlMapa" onclick="visor.map.zoomIn();" id="troba" >+</div>
+					
+					<div class="controlMapa controlMapa-junt "onclick="visor.map.zoomOut()"  id="troba" >-</div>
+			
+					<div class="controlMapa controlMapa-separat" onclick="visor.locate.start();"  id="troba" >B</div>
+					
+					<div class="controlMapa controlMapa-separat" onclick="uploadFromGallery()" id="troba" >Ph</div>
+					
+					<div class="controlMapa controlMapa-separat" onclick="recuperaElements();"> El</div>
+					
+					<div class="controlMapa controlMapa-separat" onclick="$.mobile.changePage('#pageDetail', {transition: 'pop', role: 'dialog'});" > P </div>
+					
+				</div>	
+			
+				<div id="map" style="height:100%;"></div>
 			</div>
 			
 			<!------------------ Footer --------------->
