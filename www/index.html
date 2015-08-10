@@ -546,7 +546,7 @@
 						+ "</h2>" 
 						+ ''					
 						)
-					.on('click', uploadPhoto);
+					.on('click', uploadFromGallery);
 				visor.posicioCamera = e.latlng;		
 				
 			}
@@ -607,10 +607,10 @@
 					visor.totMarker = new L.FeatureGroup();
 					$.each(data.punts,function(i,punt){
 						//alert(punt.fl_center_coordX);
-						var marker = L.marker([punt.fl_center_coordY, punt.fl_center_coordX]);
-							//.bindPopup('<img width=200 src="' 
-							//			+ punt.vc_imatge 
-							//			+ '" />');
+						var marker = L.marker([punt.fl_center_coordY, punt.fl_center_coordX])
+							.bindPopup('<img width=200 src="' 
+										+ punt.vc_imatge 
+										+ '" />');
 						visor.totMarker.addLayer(marker);						
 					}); 
 				visor.map.addLayer(visor.totMarker);
