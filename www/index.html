@@ -590,7 +590,7 @@
 			
 			function recuperaElements(){
 				visor.map.removeLayer(visor.totMarker);
-				$.getJSON( "php/test.json", function( data ) {
+				$.getJSON( "http://issolutions.esy.es/php/select.php", function( data ) {					
 					visor.data = data;
 					visor.totMarker = new L.FeatureGroup();
 					$.each(data.punts,function(i,punt){
