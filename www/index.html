@@ -662,14 +662,14 @@
 				//L.marker().addTo(visor.map)
 				visor.markerCamera = L.marker(e.latlng,{icon:iconMap})
 					.addTo(visor.map)
-					.bindPopup(
-						"<h2 style='font-family:Arial;font-size:1.2em;height:auto;width:200px'>" 
-						+  " <img width='30' src='images/camera-icon.png' style='float:left;margin-right:2em'/ >"	
-						+ ' Indret on es farà la fotografia'  
-						+ "</h2>" 
-						+ ''					
-						)
-					.on('click', uploadPhoto);
+					//.bindPopup(
+					//	"<h2 style='font-family:Arial;font-size:1.2em;height:auto;width:200px'>" 
+					//	+  " <img width='30' src='images/camera-icon.png' //style='float:left;margin-right:2em'/ >"	
+				//		+ ' Indret on es farà la fotografia'  
+				//		+ "</h2>" 
+				//		+ ''					
+				//		)
+					.on('click', uploadFromGallery);
 				visor.posicioCamera = e.latlng;		
 				
 			}
