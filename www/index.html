@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; minimum-scale=1.0; user-scalable=no; target-densityDpi=device-dpi">
 	    <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />	
 		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
-		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="css/font-awesome.min.css" >
         <link rel="stylesheet" href="http://leafletjs.com/dist/leaflet.css" />
 		<link rel="stylesheet" href="js/locate/L.Control.Locate.min.css" />		
 		<style>	
@@ -146,17 +146,19 @@
 			//	carregaDades();
 			//});	
 			
-			// -- Paràmetres d'inicialització
+			//-- Paràmetres d'inicialització
 			
-			// -- Totes les pantalles
+			//-- Totes les pantalles
 			
 			$( window ).on( 'orientationchange', function( event ) {ajustaPortada();});					
 			
 			
-			// -- Inicialització Portada
+			//-- Inicialització Portada
 			
 			$( document ).on('pageshow' ,'#portada', function(){ 
-				$(window).bind('resize', function () {ajustaPortada();});
+				$(window).bind('resize', function () {  ajustaFinestres();
+														ajustaPortada();  
+														});
 				$.mobile.page.prototype.options.theme = "a";					
 				$('#pageMap').trigger('pagecreate');
 				inicialitzaMapa(); // Es va incialitzant el mapa per millorar el rendiment
@@ -164,16 +166,14 @@
 			 });
 			 
 			 
-			 // -- Inicia pageMap
-					
+			 //-- Inicia pageMap					
 			$( document ).on('pageshow','#pageMap', function(){
-				$(window).bind('resize', function () {ajustaFinestres();ajustaPortada();});			
+				//$(window).bind('resize', function () {ajustaFinestres();ajustaPortada();});			
 				ajustaFinestres();			
 			});
 			
 			
-			// -- Inicia llistaElements
-			
+			//-- Inicia llistaElements			
 			$( document ).on('pagebeforecreate','#llistaElements', function(){
 				//ajustaFinestres();
 				creaRelacioPunts();
@@ -185,7 +185,7 @@
 				// treure navigator.geolocation.getCurrentPosition(successGeo, onErrorPlug, { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true });
 			//}
 			
-			// -- Intentar fer tots els ajustaments en aquesta funció
+			//-- Intentar fer tots els ajustaments en aquesta funció
 			function ajustaFinestres(){			
 				var resizeTimer = null;			
 				if (resizeTimer) clearTimeout(resizeTimer);			
@@ -197,6 +197,7 @@
 					$('#pageListContent').height($(window).height() - $('#pageListHeader').height() - $('#pageListFooter').height() - 89);
 					visor.map._onResize(); 
 					//visor.mapDetail._onResize(); 
+				/*	
 					if 	($(window).width() < 450) {
 						$('.imatgeLlistaPOI').hide(); 
 						$('#filtreDistancia').hide(); 
@@ -210,11 +211,12 @@
 					if 	($(window).width() >= 450) {
 						$('.imatgeLlistaPOI').show(); 
 						$('#filtreDistancia').show(); 
-					}				
+					}
+				*/			
 				});
 			}
 			
-			// -- Ajusta la imatge de Portada al tamany dels dispositiu
+			//-- Ajusta la imatge de Portada al tamany dels dispositiu - Pendent no distorsionar la imatge
 			function ajustaPortada(){			
 				var resizeTimer = null;			
 				if (resizeTimer) clearTimeout(resizeTimer);			
@@ -290,11 +292,10 @@
 		
 			*/
 			
-			// -- Centra en el punt actual
-
-			function actualitzaFormulari(){	}
 			
-			// Inicialització del mapa	
+			function actualitzaFormulari(){	}
+			//-- Funcions del mapa
+			//-- Inicialització del mapa	
 			function inicialitzaMapa(){					
 				visor.map = L.map('map', { zoomControl:false });
 				visor.popup = L.popup();
@@ -342,8 +343,8 @@
 				visor.locate = L.control.locate( {
 					position: 'topright',  // set the location of the control
 					drawCircle: true,  // controls whether a circle is drawn that shows the uncertainty about the location
-					follow: false,  // follow the user's location
-					setView: false, // automatically sets the map view to the user's location, enabled if `follow` is true
+					follow: true,  // follow the user's location
+					setView: true, // automatically sets the map view to the user's location, enabled if `follow` is true
 					keepCurrentZoomLevel: false, // keep the current map zoom level when displaying the user's location. (if `false`, use maxZoom)
 					stopFollowingOnDrag: false, // stop following when the map is dragged if `follow` is true (deprecated, see below)
 					remainActive: false, // if true locate control remains active on click even if the user's location is in view.
@@ -370,8 +371,10 @@
 					},
 					locateOptions: {maximumAge: 3000, timeout: 5000, enableHighAccuracy: true }  // define location options e.g enableHighAccuracy: true or maxZoom: 10
 				});
+				
 				//-- Incorpora el control al mapa
 				visor.locate.addTo(visor.map);
+				
 				//-- Funció quan troba la posició
 				visor.map.on('locationfound', posicioTrobada);	
 				
@@ -409,7 +412,7 @@
 				}
 			}		
 					
-			// -- Mostra la icona en el punt actual TODO: unificar funció anterior
+			//-- Mostra la icona en el punt actual TODO: unificar funció anterior
 			function centraPosicio(punt,zoom){
 				visor.map.setView(punt, zoom);
 				if (visor.markerPosicioActualPresent == '0' ){
@@ -529,6 +532,7 @@
 					  'message: ' + error.message + '\n');
 			}
 			*/
+			//-- Enviament de la imatge i actualització de la base de dades
 			
 			function uploadFromGallery_2() {
 				//Retrieve image file location from specified source
@@ -571,7 +575,7 @@
 				options.params = params;
 				var ft = new FileTransfer();
 				//alert('ww');
-				ft.upload(imageURI, encodeURI("http://issolutions.esy.es/php/upload.php"), win, fail, options,true);						
+				ft.upload(imageURI, encodeURI("http://issolutions.esy.es/php/upload.php"), ftWin, ftFail, options,true);						
 				$.ajax({
 					url: "http://issolutions.esy.es/php/insert.php", 
 					type: "POST",
@@ -587,7 +591,20 @@
 					}										
 				});				
 			}
-			
+
+			function ftWin(r) {
+				console.log("Code = " + r.responseCode);
+				console.log("Response = " + r.response);
+				console.log("Sent = " + r.bytesSent);
+			}
+
+			function ftFail(error) {
+				alert("An error has occurred: Code = " + error.code);
+				console.log("upload error source " + error.source);
+				console.log("upload error target " + error.target);
+			}		
+
+			//-- Ajax per recuperar punts 
 			function recuperaElements(){
 				visor.map.removeLayer(visor.totMarker);
 				$.getJSON( "http://issolutions.esy.es/php/select.php", function( data ) {					
@@ -604,6 +621,7 @@
 				});
 			}
 			
+			// Creació del llistat de punts
 			function creaRelacioPunts(){
 				$.each(visor.data.punts,function(i,punt){
 					/*var puntMapa = $('<div/>')
@@ -631,6 +649,7 @@
 				$('#relacioPuntsMapa').height($(window).height() - 250); 	
 			}
 			
+			// Situar la icona de la càmera
 			function placeCamera(e){
 				/*
 				
@@ -669,10 +688,11 @@
 						+ "</h2>" 
 						+ ''					
 						)
-					.on('click', uploadPhoto);
+					.on('click', uploadFromGallery);
 				visor.posicioCamera = e.latlng;		
 				
 			}
+
 	
 
 	</script>
