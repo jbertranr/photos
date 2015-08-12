@@ -7,8 +7,8 @@
         <!-- meta name="viewport" content="width=device-width, initial-scale=1" /-->
         <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; minimum-scale=1.0; user-scalable=no; target-densityDpi=device-dpi">
 	    <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />	
-		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
-		<link rel="stylesheet" href="css/font-awesome.min.css" >
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+		<link rel="stylesheet" href="css/font-awesome.min.css" /> 
         <link rel="stylesheet" href="http://leafletjs.com/dist/leaflet.css" />
 		<link rel="stylesheet" href="js/locate/L.Control.Locate.min.css" />		
 		<style>	
@@ -304,13 +304,8 @@
 				
 				switch (opcionsBase){
 					case 'mapbox':			 
-						var capa = L.tileLayer('https://{s}.tiles.mapbox.com/v3/{id}/{z}/{x}/{y}.png', {
-							maxZoom: 18,
-							attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, '
-								+
-								'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-								'Imagery © <a href="http://mapbox.com">Mapbox</a>',
-							id: 'examples.map-i875mjb7'
+						var capa = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+									attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 						});
 						break;
 					
