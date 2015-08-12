@@ -13,6 +13,9 @@
 		<link rel="stylesheet" href="js/locate/L.Control.Locate.min.css" />		
 		<style>	
 			
+			.leaflet-control-locate {display:none}
+			
+			
 			@font-face {
 				font-family: novaFont;
 				src: url(css/fonts/PrintClearly.otf);
@@ -415,7 +418,7 @@
 					var iconSizeX = 30;
 					var iconSizeY = 45;				
 					var iconMap = L.icon({
-						iconUrl: 'images/marker-icon.png' ,
+						iconUrl: 'images/mypos.png' ,
 						shadowUrl: 'images/marker-shadow.png',
 						iconSize:     [iconSizeX, iconSizeY], // size of the icon
 						shadowSize:   [32, 32], // size of the shadow
@@ -605,8 +608,20 @@
 				$.getJSON( "http://issolutions.esy.es/php/select.php", function( data ) {					
 					visor.data = data;
 					visor.totMarker = new L.FeatureGroup();
+					var iconSizeX = 30;
+					var iconSizeY = 45;				
+					var iconMap = L.icon({
+						iconUrl: 'images/marker-icon-red.png' ,
+						shadowUrl: 'images/marker-shadow.png',
+						iconSize:     [iconSizeX, iconSizeY], // size of the icon
+						shadowSize:   [32, 32], // size of the shadow
+						iconAnchor:   [15, 45], // point of the icon which will correspond to marker's location
+						shadowAnchor: [ 10, 30],  // the same for the shadow
+						popupAnchor:  [ 0,-45] // point from which the popup should open relative to the iconAnchor
+					});		  
+					
 					$.each(data.punts,function(i,punt){
-						var marker = L.marker([punt.fl_center_coordY, punt.fl_center_coordX])
+						var marker = L.marker([punt.fl_center_coordY, punt.fl_center_coordX],{icon: iconMap})
 							.bindPopup('<img width=200 src="' 
 										+ punt.vc_imatge 
 										+ '" />');
@@ -719,23 +734,29 @@
 			</div>
 			
 			<!------------------ Content --------------->
-            <div data-role="content" id="contMapa"> 
+             <div data-role="content" id="contMapa"> 
+			
 				<div class="caixaControl" >				
 					<div id="troba1" class="controlMapa" onclick="visor.map.zoomIn();">+</div>
 					<div id="troba2" class="controlMapa controlMapa-junt" onclick="visor.map.zoomOut()">-</div>
-					<div id="troba3" class="controlMapa controlMapa-separat" onclick="visor.locate.start();">Tr</div>
+					<div id="troba3" class="controlMapa controlMapa-separat" onclick="visor.locate.start();">
+						<img width=48 src="images/locate.png">
+					</div>
 				</div>
 				
-				<div class="caixaControlInferior" >	
-
-					<div id="troba4" class="controlMapa controlMapa-separat" onclick="recuperaElements();">Pts</div>
-					<div id="troba5" class="controlMapa controlMapa-separat" onclick="$.mobile.changePage($('#llistaElements'), 'pop');" ><i class="fa fa-tags"></i></div>
-					<div id="troba6" class="controlMapa controlMapa-separat" onclick="uploadFromGallery();">F</div>
+				<div class="caixaControlInferior">
+					<div onclick="recuperaElements();" class="controlMapa controlMapa-separat" id="troba4">
+						<img style="margin-top:5px" width="28" height=40 src="images/elements.png">
+					</div>
+					<div onclick="recuperaElements();$.mobile.changePage($('#llistaElements'),'pop');" class="controlMapa controlMapa-separat" id="troba5">
+						<img style="margin-top:5px" width="24" height="40" src="images/llista.png">					
+					</div>
+					<div onclick="uploadFromGallery();" class="controlMapa controlMapa-separat" id="troba6">
+						<img style="margin-top:5px" width="37" height="40" src="images/camera.png">
+					</div>
 				</div>	
 				
-
-				<div id="map" style="height:100%;"></div>
-					
+				<div id="map" style="height:100%;"></div>			
 				
 			</div>
 			
