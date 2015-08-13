@@ -140,7 +140,7 @@
                 'posicioCamera':{},
                 'markerCamera':{},
                 'data':{},
-                'adrecaOSM":null
+                'adrecaOSM':null
             };
             
             //document.addEventListener("deviceready", onDeviceReady, false);
@@ -606,7 +606,7 @@
             }       
 
             //-- Ajax per recuperar punts 
-            function recuperaElements(){
+            function recuperaElements() {
                 visor.map.removeLayer(visor.totMarker);
                 $.getJSON( "http://issolutions.esy.es/php/select.php", function( data ) {                   
                     visor.data = data;
@@ -634,7 +634,7 @@
                 });
             }
                     
-            function creaImatgePujada(params){
+            function creaImatgePujada(params) {
                 $('#divImatgePujada').prepend( '     <div class="divContImatge" style="width=100%;height:auto"> '
                                             + '         <div class="divContImatgeTitol" style="font-size:14px;height:30px;"> '
                                             + '             Dades de la Imatge Pujada '
