@@ -139,7 +139,8 @@
                 'totMarker': new L.FeatureGroup(),
                 'posicioCamera':{},
                 'markerCamera':{},
-                'data':{}
+                'data':{},
+                'adrecaOSM":null
             };
             
             //document.addEventListener("deviceready", onDeviceReady, false);
@@ -335,7 +336,8 @@
                 visor.map.addLayer(capa);
                 // -- Event en fer click    
                 visor.map.on('click', function(e) {        
-                                        placeCamera(e);      
+                                        placeCamera(e);
+                                        recuperaAdreca(e.latlng);    
                                     });     
                 // Activa la localització del plugin de leaflet 
                 visor.locate = L.control.locate( {
@@ -487,16 +489,16 @@
             };
             */
             
-            /* Recupera l'adreça propera segons OpenStreetMap
+            // /* Recupera l'adreça propera segons OpenStreetMap
             
             function recuperaAdreca(punt){ 
                 $.getJSON("http://nominatim.openstreetmap.org/reverse?json_callback=?", 
                     { format: "json", lat: punt.lat, lon: punt.lng, zoom: 18, addressdetails: 1 },
                     function(data) { 
-                        $('#descripcio').val(data.display_name);
-                });         
+                        visor.adrecaOSM = data.display_name;
+                });               
             }
-            */
+            
             
             /* Deprecated
             function onLocationFound(e) {
@@ -558,8 +560,8 @@
                 options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);//+'.png';
                 options.mimeType="image/jpeg";
                 var params = {};
-                params.nom = 'Coords';
-                params.cognom = 'werwer';
+                params.nom = 'Joan Gomis';
+                params.cognom = visor.adrecaOSM;
                 params.codiUsuari = '12221';
                 params.imatge = options.fileName;//file.name;
                 params.locate_lng = parseFloat(visor.posicioActual.lng);
@@ -640,15 +642,18 @@
                                             + '         <div class="divContImatgeDades" style="font-size:12px;height:auto;margin-left:20px;margin-bottom:10px;"> '
                                             + '             <p><b> Nom: </b>' 
                                             +                   params.nom
-                                            +               ' ' 
-                                            +                   params.cognom                                   
+                                            + '             </p> '      
+                                            + '         </div> '
+                                            + '         <div class="divContImatgeDades" style="font-size:12px;height:auto;margin-left:20px;margin-bottom:10px;"> '
+                                            + '             <p><b> Adreça: </b>' 
+                                            +                   params.cognom
                                             + '             </p> '      
                                             + '         </div> '
                                             + '         <div class="divContImatgeDades" style="font-size:12px;height:auto;margin-left:20px;margin-bottom:10px;"> '
                                             + '             <p><b> Codi Usuari: </b>' 
                                             +                   params.codiUsuari
                                             + '             </p> '      
-                                            + '         </div> '
+                                            + '         </div> '                                            
                                             + '         <div class="divContImatgeCoords" style="font-size:12px;height:20px;margin-left:20px;margin-bottom:10px;"> '
                                             + '             <p><b> Longitud: </b>' 
                                             +               params.center_lng
