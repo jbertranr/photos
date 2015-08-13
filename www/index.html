@@ -560,7 +560,7 @@
      			var params = {};
 				params.nom = 'Coords';
 				params.cognom = 'werwer';
-				params.codiusuari = '12221';
+				params.codiUsuari = '12221';
 				params.imatge = options.fileName;//file.name;
 				params.locate_lng = parseFloat(visor.posicioActual.lng);
 				params.locate_lat = parseFloat(visor.posicioActual.lat);
@@ -631,19 +631,31 @@
 					});
 				});
 			}
-			
-			
+					
 			function creaImatgePujada(params){
-				$('#divImatgePujada').append( '     <div class="divContImatge" style="width=100%;height:auto"> '
-											+ '			<div class="divContImatgeTitol" style="font-size:14px;height:40px;"> '
+				$('#divImatgePujada').prepend( '     <div class="divContImatge" style="width=100%;height:auto"> '
+											+ '			<div class="divContImatgeTitol" style="font-size:14px;height:30px;"> '
 											+ ' 			Dades de la Imatge Pujada '
 											+ '        	</div> '
-											+ '			<div class="divContImatgeTitol" style="font-size:12px;height:20px;margin-left:20px;"> '
-											+ '				Longitud: ' 
+											+ '			<div class="divContImatgeDades" style="font-size:12px;height:auto;margin-left:20px;margin-bottom:10px;"> '
+											+ '				<p><b> Nom: </b>' 
+											+			     	params.nom
+											+ 				' ' 
+											+ 					params-cognom									
+											+ '        		</p> '		
+											+ '        	</div> '
+											+ '			<div class="divContImatgeDades" style="font-size:12px;height:auto;margin-left:20px;margin-bottom:10px;"> '
+											+ '				<p><b> Codi Usuari: </b>' 
+											+					params.codiUsuari
+											+ '        		</p> '		
+											+ '        	</div>
+											+ '			<div class="divContImatgeCoords" style="font-size:12px;height:20px;margin-left:20px;margin-bottom:10px;"> '
+											+ '				<p><b> Longitud: </b>' 
 											+				params.center_lng
-											+ '				Latitud: ' 											
+											+ '				<b> Latitud: </b>'										
 											+				params.center_lat
-											+ '        	</div> '		
+											+ '        		</p> '		
+											+ '        	</div> '
 											+ '			<div class="divImatge" style="width:100%;height:auto;margin-left:20px; "> '
 											+ '				<img width=300 src="http://issolutions.esy.es/php/image/' 									
 											+ 					params.imatge 
