@@ -8,6 +8,7 @@
 
     <name>photos</name>
 	<gap:splash src="home.png" />
+	<preference name="SplashMaintainAspectRatio" value="true" />
     <description> 
         Algunes proves més per anar fent
     </description>

@@ -341,7 +341,7 @@
 				visor.locate = L.control.locate( {
 					position: 'topright',  // set the location of the control
 					drawCircle: true,  // controls whether a circle is drawn that shows the uncertainty about the location
-					follow: true,  // follow the user's location
+					follow: false,  // follow the user's location
 					setView: true, // automatically sets the map view to the user's location, enabled if `follow` is true
 					keepCurrentZoomLevel: false, // keep the current map zoom level when displaying the user's location. (if `false`, use maxZoom)
 					stopFollowingOnDrag: false, // stop following when the map is dragged if `follow` is true (deprecated, see below)
@@ -579,8 +579,8 @@
 					type: "POST",
 					data: params,
 					success: function(){
-						alert('Imatge Pujada a la base de dades');
 						recuperaElements();
+						creaImatgePujada(params);
 					},
 					error: function(xhr, textStatus, errorThrown){
 						alert("Error detectat: " + xhr.responseText 
@@ -614,10 +614,10 @@
 						iconUrl: 'images/marker-icon-red.png' ,
 						shadowUrl: 'images/marker-shadow.png',
 						iconSize:     [iconSizeX, iconSizeY], // size of the icon
-						shadowSize:   [32, 32], // size of the shadow
-						iconAnchor:   [15, 45], // point of the icon which will correspond to marker's location
-						shadowAnchor: [ 10, 30],  // the same for the shadow
-						popupAnchor:  [ 0,-45] // point from which the popup should open relative to the iconAnchor
+						shadowSize:   [32, 32],  // size of the shadow
+						iconAnchor:   [15, 45],  // point of the icon which will correspond to marker's location
+						shadowAnchor: [ 10, 30], // the same for the shadow
+						popupAnchor:  [ 0,-45]   // point from which the popup should open relative to the iconAnchor
 					});		  
 					
 					$.each(data.punts,function(i,punt){
@@ -631,7 +631,21 @@
 				});
 			}
 			
-			// Creació del llistat de punts
+			
+			function creaImatgePujada(params){
+				$('#divImatgePujada').append( '     <div class="divContImatge" style="width=100%;height:auto"> '
+											+ '			<div class="divContImatgeTitol" style="font-size:14px;height:40px;"> '
+											+ ' 			Dades de la Imatge Pujada '
+											+ '        	</div> '											
+											+ '			<div class="divImatge" style="width:100%;height:auto"> '
+											+ '				<img width=300 src="http:\\issolutions.esy.es\php\' 
+											+ 					params.imatge 
+											+ '				"></img>'
+											+ '        	 </div> '
+											+ '		</div>');			
+			}
+			
+			// Creació del llistat de punts  -- PD81RN
 			function creaRelacioPunts(){
 				$.each(visor.data.punts,function(i,punt){
 					/*var puntMapa = $('<div/>')
@@ -645,11 +659,11 @@
 						.appendTo($('#relacioPuntsMapa')); 		
 					*/
 					
-					$('#relacioPuntsMapa').append('     <ol data-role="listview"> '
+					$('#relacioPuntsMapa').append(	  '  <ol data-role="listview"> '
 													+ '		<li>'
 													+ ' 		<a href="#"> List Item '
 													+               i
-													+'				<img width=70 src="' 
+													+ '				<img width=70 src="' 
 													+ 					punt.vc_imatge 
 													+ '				"/>'												
 													+ ' 		</a>'
@@ -783,7 +797,7 @@
 		
 		<!--------------------------------  Pàgina Detall Element ---------------------------------> 		
 		<div data-role="page" data-dialog="true" id="llistaElements"> 
-            <div data-role="header"  role="banner" id = "headerDetail" style="z-index: 1; box-shadow:0px 2px 6px #444444;">				
+            <div data-role="header"  role="banner" id = "headerDetail" style="z-index: 1; box-shadow:0px 2px 6px #444444;">			
 			    <!--div data-inline="true" value="on"  style="" checked="checked" type="radio" onclick=" visor.mapDetail.setView([visor.posicioActual.lat, visor.posicioActual.lng], 20);" href="#" class="ui-btn-right ui-btn ui-icon-navigation ui-btn-icon-left ui-shadow ui-corner-all "> Troba'm </div>	
 				<h1 class="ui-title" role="heading" aria-level="1">Elements visibles en el mapa</h1> 
 				<a href="#pageList"  class="ui-btn ui-icon-bullets ui-btn-icon-left ui-shadow ui-corner-all">Llista</a>
@@ -810,7 +824,44 @@
 					<a onclick="nextOverlayLayer(1)" href="#" style="width:30px;height:16px;" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-icon-arrow-r"></a>
       			</div>			
 			</div-->			
-        </div>			
+        </div>
+		<!--  Pàgina Imatge Pujada --> 		
+		<div data-role="page" data-dialog="true" id="imatgePujada"> 
+            <div data-role="header"  role="banner" id ="headerImatgePujada" style="z-index: 1; box-shadow:0px 2px 6px #444444;">				
+			    <!--div data-inline="true" value="on"  style="" checked="checked" type="radio" onclick=" visor.mapDetail.setView([visor.posicioActual.lat, visor.posicioActual.lng], 20);" href="#" class="ui-btn-right ui-btn ui-icon-navigation ui-btn-icon-left ui-shadow ui-corner-all "> Troba'm </div>	
+				<h1 class="ui-title" role="heading" aria-level="1">Elements visibles en el mapa</h1> 
+				<a href="#pageList"  class="ui-btn ui-icon-bullets ui-btn-icon-left ui-shadow ui-corner-all">Llista</a>
+				<div data-type="horizontal" data-role="controlgroup" style="position:absolute;top:47px;right:3px;">
+			    	<a value="on"  checked="checked" type="radio" onclick="baseLayerDetail(visor.config.layers.base[3])" href="#" class="ui-btn ">Map</a>
+			    	<a value="off" checked="checked" type="radio" onclick="baseLayerDetail(visor.config.layers.base[0])" href="#" class="ui-btn ">Sat</a>
+				</div-->
+				 <h1>Dades de la Imatge pujada</h1>			
+			</div>
+			
+
+            <div data-role="content" id="contImatgePujada"> 
+				<div id="divImatgePujada" style="height:300px"></div>				
+			</div>
+			<div data-role="footer">
+				<h1>Dades enregistrades</h1>
+			</div>
+			
+
+			<!--div data-role="footer"  id = "footer" style="box-shadow: 0 0 8px 2px rgb(68, 68, 68);"> 
+				<div data-type="horizontal" data-role="controlgroup" style="text-align:center;">	
+					<a onclick="nextOverlayLayer(-1)" href="#" style="width:30px;height:16px;"  class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-icon-arrow-l"></a>
+			    	<a style="margin-top: 0px;width:120px" id="layerName"   class="ui-btn ">Layers</a>
+					<a onclick="nextOverlayLayer(1)" href="#" style="width:30px;height:16px;" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-icon-arrow-r"></a>
+      			</div>			
+			</div-->			
+        </div>	
+
+
+
+
+
+
+		
     </body>
 </html>   
 
