@@ -301,7 +301,7 @@
             //-- Funcions del mapa
             //-- Inicialització del mapa    
             function inicialitzaMapa(){                 
-                visor.map = L.map('map', { zoomControl:false });
+                visor.map = L.map('map', { zoomControl:false, detectRetina:true });
                 visor.popup = L.popup();
                 var opcionsBase= 'mapbox';
                 visor.map.setView([41.54, 2.45], 17);   
