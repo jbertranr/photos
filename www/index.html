@@ -9,8 +9,7 @@
         <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" /> 
         <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
         <link rel="stylesheet" href="css/font-awesome.min.css" /> 
-        <link href='https://api.mapbox.com/mapbox.js/v2.2.2/mapbox.css' rel='stylesheet' />
-        <!--link rel="stylesheet" href="http://leafletjs.com/dist/leaflet.css" /-->
+        <link rel="stylesheet" href="http://leafletjs.com/dist/leaflet.css" />
         <link rel="stylesheet" href="js/locate/L.Control.Locate.min.css" />     
         <style> 
             
@@ -105,10 +104,7 @@
         <script src="phonegap.js"></script>
         <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
         <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-        <script src='https://api.mapbox.com/mapbox.js/v2.2.2/mapbox.js'></script>
-
-        
-        <!--script type="text/javascript" src="http://leafletjs.com/dist/leaflet.js"></script-->       
+        <script type="text/javascript" src="http://leafletjs.com/dist/leaflet.js"></script>       
         <script src="js/locate/L.Control.Locate.min.js" ></script>
         <script type="text/javascript"> 
 
@@ -311,8 +307,8 @@
                 visor.map.setView([41.54, 2.45], 17);   
                 
                 switch (opcionsBase){
-                    case 'osm':           
-                        var capa = L.tileLayer('http://c.tile.osm.org/{z}/{x}/{y}.png', {
+                    case 'mapbox':           
+                        var capa = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
                                     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                         });
                         break;
@@ -326,11 +322,15 @@
                         break;   
                     
                     default :
-                        L.mapbox.accessToken ='pk.eyJ1IjoiamJlcnRyYW5yIiwiYSI6IjlPVVBXaHcifQ.w9DaEfpVVQIlDN42OWR2_w';
-                        var capa = L.tileLayer('https://{s}.tiles.mapbox.com/v3/{id}/{z}/{x}/{y}.png?access_token=' + L.mapbox.accessToken, {
-                             attribution: '<a href="http://www.mapbox.com/about/maps/" target="_blank">Terms &amp; Feedback</a>'
+                        var capa = L.tileLayer('https://{s}.tiles.mapbox.com/v3/{id}/{z}/{x}/{y}.png', {
+                            maxZoom: 18,
+                            attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, '
+                                +
+                                '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+                                'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+                            id: 'examples.map-i875mjb7'
                         });
-                        break;                       
+                        break;
                 }   
 
                 visor.map.addLayer(capa);
