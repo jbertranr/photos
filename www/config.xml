@@ -7,7 +7,7 @@
 			version = "1.0.0">
 
     <name>photos</name>
-	<gap:splash src="home.png" />
+	<gap:splash src="home.jpg" />
 	<preference name="SplashMaintainAspectRatio" value="true" />
     <description> 
         Algunes proves més per anar fent
