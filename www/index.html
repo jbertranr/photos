@@ -633,7 +633,7 @@
                         popupAnchor:  [ 0,-45]   // point from which the popup should open relative to the iconAnchor
                     });       
                     
-                    $.each(data.punts,function(i,punt){
+                    $.each(data,function(i,punt){
                         var marker = L.marker([punt.DEN_X, punt.DEN_Y],{icon: iconMap})
                             .bindPopup('<img width=200 src="' 
                                         + punt.IMATGE 
@@ -683,7 +683,7 @@
             
             // Creació del llistat de punts  -- PD81RN
             function creaRelacioPunts(){
-                $.each(visor.data.punts,function(i,punt){
+                $.each(visor.data,function(i,punt){
                     /*var puntMapa = $('<div/>')
                         .addClass('llistaElementMapa')
                         .html('<div>'
