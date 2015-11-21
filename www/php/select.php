@@ -13,14 +13,15 @@ if ($conn->connect_error) {
 
 $sql = "SELECT * FROM DENUNCIA";
 $result = $conn->query($sql);
-
+$rows = array();
 if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
-        echo "id: " . $row["CODI"]. " - Name: " . $row["IMATGE"]. " " . $row["DEN_X"]. "<br>";
+        $rows[] = $row;
     }
 } else {
     echo "0 results";
 }
+print json_encode($rows);
 $conn->close();
-?> 
+?>
