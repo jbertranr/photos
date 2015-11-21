@@ -1,8 +1,8 @@
 <?php
-$servername = "localhost";
-$username = "username";
-$password = "password";
-$dbname = "myDB";
+$servername = "mysql.hostinger.es";
+$username = "u261058157_admin";
+$password = "mImUVY2g";
+$dbname = "u261058157_ma";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -11,15 +11,16 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "INSERT INTO MyGuests (firstname, lastname, email)
-VALUES ('John', 'Doe', 'john@example.com')";
+$sql = "SELECT * FROM DENUNCIA";
+$result = $conn->query($sql);
 
-if ($conn->query($sql) === TRUE) {
-    $last_id = $conn->insert_id;
-    echo "New record created successfully. Last inserted ID is: " . $last_id;
+if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+        echo "id: " . $row["CODI"]. " - Name: " . $row["IMATGE"]. " " . $row["DEN_X"]. "<br>";
+    }
 } else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
+    echo "0 results";
 }
-
 $conn->close();
 ?> 
