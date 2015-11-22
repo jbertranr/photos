@@ -551,20 +551,20 @@
             }
 
             function uploadFromGallery() {
-				uploadPhoto('aa');
+				//uploadPhoto('aa');
                 // Retrieve image file location from specified source
-                /*navigator.camera.getPicture( uploadPhoto,
+                navigator.camera.getPicture( uploadPhoto,
                                             function(message) { alert('get picture failed'); },
                                             { quality: 50, 
                                             destinationType: navigator.camera.DestinationType.FILE_URI,
                                             sourceType: navigator.camera.PictureSourceType.CAMERA }
                                           );
-				*/  
+				  
             }
             
             function uploadPhoto(imageURI) {
-                //var options = new FileUploadOptions();
-                var options = {};
+                var options = new FileUploadOptions();
+                //var options = {};
 				options.fileKey="file";
                 options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);//+'.png';
                 options.mimeType="image/jpeg";
