@@ -11,7 +11,7 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-$sql = "INSERT INTO usuari (CODI,NOM, COGNOM) VALUES ('1212','Joan','Perez')";
+$sql = "INSERT INTO usuari (codi,nom,cogmom) VALUES ('123','Joanet','Perez')";
 
 if (mysqli_query($conn, $sql)) {
     echo "New record created successfully";
@@ -20,4 +20,10 @@ if (mysqli_query($conn, $sql)) {
 }
 
 mysqli_close($conn);
+
+
+
+
+
+
 ?> 

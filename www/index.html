@@ -568,6 +568,7 @@
 				options.fileKey="file";
                 options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);//+'.png';
                 options.mimeType="image/jpeg";
+				options.headers = { Connection: "close" };
                 var params = {};
                 params.NOM = 'Joan';
                 params.COGNOM1 = 'Gomis';
