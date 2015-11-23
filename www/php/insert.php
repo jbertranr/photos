@@ -16,7 +16,7 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-$sql = "INSERT INTO denuncia (codi,usuari_codi,adreca,den_x,den_y) VALUES ('$codi','$codi_usuari','$adreca','$den_x','$den_y')";
+$sql = "INSERT INTO denuncia (codi,usuari_codi,adreca,den_x,den_y,usu_x,usu_y) VALUES ('$codi','$codi_usuari','$adreca','$den_x','$den_y''$den_x','$den_y')";
 
 if (mysqli_query($conn, $sql)) {
     echo "New record created successfully";
