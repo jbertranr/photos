@@ -11,7 +11,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT * FROM DENUNCIA";
+$sql = "SELECT * FROM denuncia";
 $result = $conn->query($sql);
 $rows = array();
 if ($result->num_rows > 0) {

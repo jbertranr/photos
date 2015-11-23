@@ -570,15 +570,16 @@
                 options.mimeType="image/jpeg";
 				options.headers = { Connection: "close" };
                 var params = {};
-                params.NOM = 'Joan';
-                params.COGNOM1 = 'Gomis';
-				params.COGNOM2 = visor.adrecaOSM;
-                params.USUARI_CODI = '12221';
-                params.IMATGE = options.fileName;//file.name;
-                params.DEN_X = parseFloat(visor.posicioActual.lng);
-                params.DEN_Y = parseFloat(visor.posicioActual.lat);
-                params.USU_X = parseFloat(visor.posicioCamera.lng);
-                params.USU_Y = parseFloat(visor.posicioCamera.lat);                
+                params.nom= 'Joan';
+                params.cogonm1 = 'Gomis';
+				params.cognom2 = 'Perez'
+                params.adreca = visor.adrecaOSM;
+                params.usuari_codi = '12221';
+                params.imatge = options.fileName;//file.name;
+                params.den_x = parseFloat(visor.posicioActual.lng);
+                params.den_y = parseFloat(visor.posicioActual.lat);
+                params.usu_x = parseFloat(visor.posicioCamera.lng);
+                params.usu_y = parseFloat(visor.posicioCamera.lat);                
                 //alert(params.locate_lng + ' '
                 //  + params.locate_lat + ' '
                 //  + params.center_lng + ' '
