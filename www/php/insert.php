@@ -3,11 +3,13 @@ $servername = "mysql.hostinger.es";
 $username = "u261058157_admin";
 $password = "mImUVY2g";
 $dbname = "u261058157_ma";
-$codi = $_GET['codi'];
-$usuari_codi= $_GET['usuari_codi'];
-$adreca = $_GET['adreca'];
-$den_x = $_GET['den_x'];
-$den_y = $_GET['den_y'];
+$codi = $_POST['codi'];
+$usuari_codi= $_POST['usuari_codi'];
+$adreca = $_POST['adreca'];
+$descripcio = $_POST['descripcio'];
+$imatge = $_POST['imatge'];
+$den_x = $_POST['den_x'];
+$den_y = $_POST['den_y'];
 
 // Create connection
 $conn = mysqli_connect($servername, $username, $password, $dbname);
@@ -16,7 +18,7 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-$sql = "INSERT INTO denuncia (codi,usuari_codi,adreca,den_x,den_y,usu_x,usu_y) VALUES ('$codi','$codi_usuari','$adreca','$den_x','$den_y''$den_x','$den_y')";
+$sql = "INSERT INTO denuncia (codi,usuari_codi,adreca,descripcio,imatge,den_x,den_y,usu_x,usu_y) VALUES ('$codi','$usuari_codi','$adreca','asdad','asdadad','$den_x','$den_y','$den_x','$den_y')";
 
 if (mysqli_query($conn, $sql)) {
     echo "New record created successfully";

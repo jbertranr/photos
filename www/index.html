@@ -570,11 +570,10 @@
                 options.mimeType="image/jpeg";
 				options.headers = { Connection: "close" };
                 var params = {};
-                params.nom= 'Joan';
-                params.cogonm1 = 'Gomis';
-				params.cognom2 = 'Perez'
-                params.adreca = visor.adrecaOSM;
-                params.usuari_codi = '12221';
+                params.codi= 'Joan';
+                params.usuari_codi = 'Gomis';
+				params.adreca = visor.adrecaOSM;
+                params.descripcio = 'Simulació de descripcio';
                 params.imatge = options.fileName;//file.name;
                 params.den_x = parseFloat(visor.posicioActual.lng);
                 params.den_y = parseFloat(visor.posicioActual.lat);
