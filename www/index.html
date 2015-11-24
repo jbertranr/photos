@@ -634,10 +634,10 @@
                         popupAnchor:  [ 0,-45]   // point from which the popup should open relative to the iconAnchor
                     });       
                     
-                    $.each(data,function(i,punt){
+                    $.each(visor.data,function(i,punt){
                         var marker = L.marker([punt.den_x, punt.den_y],{icon: iconMap})
                             .bindPopup('<img width=200 src="' 
-                                        + punt.IMATGE 
+                                        + punt.imatge 
                                         + '" />');
                         visor.totMarker.addLayer(marker);
                         visor.map.addLayer(visor.totMarker);
@@ -652,29 +652,29 @@
                                             + '         </div> '
                                             + '         <div class="divContImatgeDades" style="font-size:12px;height:auto;margin-left:20px;margin-bottom:10px;"> '
                                             + '             <p><b> Nom: </b>' 
-                                            +                   params.NOM
+                                            +                   params.adreca
                                             + '             </p> '      
                                             + '         </div> '
                                             + '         <div class="divContImatgeDades" style="font-size:12px;height:auto;margin-left:20px;margin-bottom:10px;"> '
                                             + '             <p><b> Adreça: </b>' 
-                                            +                   params.COGNOM2
+                                            +                   params.codi
                                             + '             </p> '      
                                             + '         </div> '
                                             + '         <div class="divContImatgeDades" style="font-size:12px;height:auto;margin-left:20px;margin-bottom:10px;"> '
                                             + '             <p><b> Codi Usuari: </b>' 
-                                            +                   params.USUARI_CODI
+                                            +                   params.usuari_codi
                                             + '             </p> '      
                                             + '         </div> '                                            
                                             + '         <div class="divContImatgeCoords" style="font-size:12px;height:20px;margin-left:20px;margin-bottom:10px;"> '
                                             + '             <p><b> Longitud: </b>' 
-                                            +               params.DEN_X
+                                            +               params.den_x
                                             + '             <b> Latitud: </b>'                                      
-                                            +               params.DEN_Y
+                                            +               params.den_y
                                             + '             </p> '      
                                             + '         </div> '
                                             + '         <div class="divImatge" style="width:100%;height:auto;margin-left:20px; "> '
                                             + '             <img width=300 src="http://issolutions.esy.es/varis/www/php/image/'                                   
-                                            +                   params.IMATGE
+                                            +                   params.imatge
                                             + '             "></img>'
                                             + '          </div> '
                                             + '     </div>');
