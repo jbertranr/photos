@@ -635,7 +635,7 @@
                     });       
                     
                     $.each(data,function(i,punt){
-                        var marker = L.marker([punt.DEN_X, punt.DEN_Y],{icon: iconMap})
+                        var marker = L.marker([punt.den_x, punt.den_y],{icon: iconMap})
                             .bindPopup('<img width=200 src="' 
                                         + punt.IMATGE 
                                         + '" />');
